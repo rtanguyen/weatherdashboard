@@ -1,0 +1,52 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 5px;
+}
+
+#appTitle {
+    font-size: 55px;
+    padding-left: 5px;
+    padding-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.card-title {
+    line-height: 1;
+    margin-bottom: 0;
+}
+
+
+
+
+.sunny-bg  {
+    background-color: #f4e4c9;
+}
+
+.partly-cloudy-bg {
+    background-color: #e7decd;
+}
+
+.cloudy-bg {
+    background-color: #d1d9ce;
+}
+
+.rain-bg {
+    background-color: #a4a7a8;
+}
+
+.snow-bg {
+    background-color: #d2dfe7;
+}
+
+.night {
+    background-color: #464646;
+    color: antiquewhite;
+    
+}
+
