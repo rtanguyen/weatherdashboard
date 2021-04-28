@@ -7,7 +7,6 @@ body {
 }
 
 #appTitle {
-    font-size: 55px;
     padding-left: 5px;
     padding-bottom: 10px;
 }
@@ -21,7 +20,10 @@ body {
     margin-bottom: 0;
 }
 
-
+.list-group-item {
+    padding: .25rem 1.25rem;
+    font-size: 15px;
+}
 
 
 .sunny-bg  {

@@ -1,55 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather</title>
-</head>
-<body class="cloudy-bg">
-    <!-- div for search form/search history -->
+  </head>
+  <body>
     <header class="pb-3">
-        <h1 id="appTitle">weather dashboard</h1>
+      <h1 id="appTitle">weather dashboard</h1>
     </header>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-3 mt-3">
-                <h5 class="m-2">ENTER CITY</h5>
-                    <div class="input-group mt-2 mb-3">
-                        <input type="text" class="form-control" id="search-input" placeholder="AUSTIN" aria-label="City" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="btn-search">SEARCH</button>
-                            </div>
-                    </div>
-                <ul class="list-group search-history"></ul>
-                </div>
-                <div class="col-1"></div>
-                <div class="col-8 weather">
-                <div id="current-weather">
-                    <div class="card bg-transparent border-light">
-                        <div class="card-body">
-                            <h1 class="card-title" id="cityTitle">hi</h1>
-                            <h4 class="card-title mb-3" id="currentDay"></h4>
-                            <p class="card-text">Temp: <span id="currentTemp"></span></p>
-                            <p class="card-text">Wind: <span id="currentWind"></span></p>
-                            <p class="card-text">Humidity: <span id="currentHumidity"></span></p>
-                            <p class="card-text">UV Index: <span id="currentUV"></span></p>
-                        </div>
-                      </div>                      
-                </div>
-                <div id="forecast"></div>
-                </div>
+<!-- SEARCH FORM AND HISTORY -->
+    <div class="row">
+        <div class="col-3 mt-3">
+          <h5 class="m-2">ENTER CITY</h5>
+          <div class="input-group mt-2 mb-3">
+            <input type="text" class="form-control" id="search-input" placeholder="AUSTIN" aria-label="City" aria-describedby="button-addon2"/>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="btn-search">SEARCH</button>
             </div>
+          </div>
+          <h5 class="m-2 pt-3">SEARCH HISTORY</h5>
+          <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action hidden" id="savedCity0"></button>
+            <button type="button" class="list-group-item list-group-item-action hidden" id="savedCity1"></button>
+            <button type="button" class="list-group-item list-group-item-action hidden" id="savedCity2"></button>
+            <button type="button" class="list-group-item list-group-item-action hidden" id="savedCity3"></button>
+            <button type="button" class="list-group-item list-group-item-action hidden" id="savedCity4"></button>
+            <button type="button" class="list-group-item list-group-item-action hidden" id="savedCity5"></button>
+            <button type="button" class="list-group-item list-group-item-action hidden" id="savedCity6"></button>
+            <button type="button" class="list-group-item list-group-item-action hidden" id="savedCity7"></button>
+          </div>
         </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="./assets/js/script.js"></script>
-</body>
+        <div class="col-1"></div>
+<!-- WEATHER AND WEATHER FORECAST -->
+        <div class="col-7 weather">
+          <div id="current-weather">
+            <div class="card bg-transparent text-center">
+              <div class="card-header snow-bg">
+                <h2 class="card-title" id="cityTitle">city</h2>
+                <h5 class="card-title mb-3" id="currentDay"></h5>
+                <img id="icon" />
+              </div>
+              <div class="card-body">
+                <p class="card-text">Temp: <span id="currentTemp"></span></p>
+                <p class="card-text">Wind: <span id="currentWind"></span></p>
+                <p class="card-text">
+                  Humidity: <span id="currentHumidity"></span>
+                </p>
+                <p class="card-text">UV Index: <span id="currentUV"></span></p>
+              </div>
+            </div>
+          </div>
+          <div id="forecast"></div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+      integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
