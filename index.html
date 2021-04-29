@@ -36,7 +36,7 @@
           <div class="input-group mt-2 mb-3">
             <input type="text" class="form-control" id="search-input" placeholder="AUSTIN" aria-label="City" aria-describedby="button-addon2"/>
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" id="btn-search">SEARCH</button>
+              <button class="btn btn-outline-secondary bg-color" type="button" id="btn-search">SEARCH</button>
             </div>
           </div>
           <h5 class="m-2 pt-3">SEARCH HISTORY</h5>
@@ -55,23 +55,8 @@
 <!-- WEATHER AND WEATHER FORECAST -->
         <div class="col-7 weather">
           <div id="current-weather">
-            <div class="card bg-transparent text-center">
-              <div class="card-header snow-bg">
-                <h2 class="card-title" id="cityTitle">city</h2>
-                <h5 class="card-title mb-3" id="currentDay"></h5>
-                <img id="icon" />
-              </div>
-              <div class="card-body">
-                <p class="card-text">Temp: <span id="currentTemp"></span></p>
-                <p class="card-text">Wind: <span id="currentWind"></span></p>
-                <p class="card-text">
-                  Humidity: <span id="currentHumidity"></span>
-                </p>
-                <p class="card-text">UV Index: <span id="currentUV"></span></p>
-              </div>
-            </div>
           </div>
-          <div id="forecast"></div>
+          <div id="forecast" class="row mt-5"></div>
         </div>
         <div class="col-1"></div>
       </div>

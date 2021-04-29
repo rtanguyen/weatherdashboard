@@ -11,13 +11,22 @@ body {
     padding-bottom: 10px;
 }
 
+#forecast {
+    display: flexbox;
+    justify-content: space-between;
+}
+
 .hidden {
     display: none;
 }
 
 .card-title {
-    line-height: 1;
+    line-height: 1.1;
     margin-bottom: 0;
+}
+
+#currentWeatherText {
+    font-size: 20px
 }
 
 .list-group-item {
@@ -25,30 +34,14 @@ body {
     font-size: 15px;
 }
 
-
-.sunny-bg  {
-    background-color: #f4e4c9;
-}
-
-.partly-cloudy-bg {
-    background-color: #e7decd;
-}
-
-.cloudy-bg {
-    background-color: #d1d9ce;
-}
-
-.rain-bg {
-    background-color: #a4a7a8;
-}
-
-.snow-bg {
+.bg-color {
     background-color: #d2dfe7;
 }
 
-.night {
-    background-color: #464646;
-    color: antiquewhite;
-    
+.fc-bg {
+    background-color: #e7dfd3;
 }
 
+.fp {
+  font-size: 16px;  
+}

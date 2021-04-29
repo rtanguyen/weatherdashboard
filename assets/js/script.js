@@ -6,13 +6,9 @@ var searchBtnEl = document.querySelector("#btn-search")
 var currentEl = document.querySelector("#current-weather");
 var forecastEl = document.querySelector("#forecast")
 var searchValue = ""
-var cityTitleEl = document.querySelector("#cityTitle")
-var cityText = ""
+var currentDay = moment().format("dddd, MMMM Do");
+var cardBody = ""
 
-//current date
-$("#currentDay").html(function () {
-    return moment().format("dddd, MMMM Do");
-  });
 
 var formHandler = function(event) {
     // get value from input element
@@ -66,7 +62,10 @@ var getCurrentWeather = function(city) {
     if (response.ok) {
       response.json().then(function(data) {
         console.log(data)
+        $("#current-weather").empty();
+        $("#forecast").empty();
         displayWeather(data);
+        getCurrentUV(data);
       });
     } 
     else {
@@ -75,15 +74,56 @@ var getCurrentWeather = function(city) {
   })
 };
 
-//display current weather
+//create divs to display weather
 var displayWeather = function(weather) {
-    cityText = weather.name
-    console.log(typeof cityText)
-    $("#cityTitle").text() = cityText;
+    let weatherContainer = $("<div>").addClass("card bg-transparent text-center").appendTo(currentEl);
+    let cardHeader = $("<div>").addClass("card-header bg-color").appendTo(weatherContainer);
+    let cityTitle = $("<h2>").addClass("card-title").text(weather.name).appendTo(cardHeader);
+    let dateTitle = $("<h4>").addClass("card-title").html(currentDay).appendTo(cardHeader);
+    let icon = $("<img>").addClass("icon-img").attr("src", "http://openweathermap.org/img/wn/" + weather.weather[0].icon + ".png").appendTo(cardHeader);
+    cardBody = $("<div>").addClass("card-body").appendTo(weatherContainer);
+    let tempText =$("<p>").addClass("card-text").attr("id", "currentWeatherText").text("Temperature: " + weather.main.temp + " °F").appendTo(cardBody);
+    let windText =$("<p>").addClass("card-text").text("Wind: " + weather.wind.speed + " mph").appendTo(cardBody);
+    let humidityText =$("<p>").addClass("card-text").text("Humidity: " + weather.main.humidity + "%").appendTo(cardBody);
 }
-//get 5 day forecast
-//display forecast
 
+//get today's UV index
+var getCurrentUV = function(coordinates) {
+    var UVurl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + coordinates.coord.lat + "&lon=" + coordinates.coord.lon + "&units=imperial&appid=fc3b8208da178484d1ec9579831a350b"
+      fetch(UVurl).then(function(response) {
+            response.json().then(function(data) {  
+                console.log(data)  
+            //display UV
+            let uvText =$("<p>").addClass("btn btn-sm").text("UV Index: " + data.current.uvi).appendTo(cardBody);
+
+            //UV conditional formatting
+            if (data.current.uvi <= 2) {
+                uvText.addClass("btn-success")
+            } else if(data.current.uvi <= 7) {
+                uvText.addClass("btn-warning")
+            } else if(data.current.uvi <= 10) {
+                uvText.addClass("btn-danger")
+            }
+
+            //get forecast
+            for(var i = 1; i<7; i++) {
+                //convert date from unix
+                var newDate = moment.unix(data.daily[i].dt)
+                newDate = newDate._d.toLocaleDateString();
+                // console.log(convertDate)
+
+                let forecastContainer = $("<div>").addClass("col-2").appendTo(forecastEl);
+                let forecastCard = $("<div>").addClass("card fc-bg text-center").appendTo(forecastContainer)
+                let cardBodyForecast = $("<div>").addClass("card-body").appendTo(forecastCard);
+                let forecastDate = $("<h5>").addClass("card-title").html(newDate).appendTo(cardBodyForecast);   
+                let forecastIcon = $("<img>").addClass("icon-img").attr("src", "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + ".png").appendTo(cardBodyForecast);   
+                let forecastTemp = $("<p>").addClass("card-text fp").text(Math.floor(data.daily[i].temp.day) + " °F").appendTo(cardBodyForecast);
+                let forecastWind = $("<p>").addClass("card-text fp").text(data.daily[i].wind_speed + " MPH").appendTo(cardBodyForecast);
+                let forecastHumidity = $("<p>").addClass("card-text fp").text(data.daily[i].humidity + "%").appendTo(cardBodyForecast);
+            }
+          });
+        })
+    }
 
 //retrieve from local storage and display search history
 var load = function() {
