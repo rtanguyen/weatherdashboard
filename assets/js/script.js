@@ -83,7 +83,7 @@ var displayWeather = function(weather) {
     let icon = $("<img>").addClass("icon-img").attr("src", "http://openweathermap.org/img/wn/" + weather.weather[0].icon + ".png").appendTo(cardHeader);
     cardBody = $("<div>").addClass("card-body").appendTo(weatherContainer);
     let tempText =$("<p>").addClass("card-text").attr("id", "currentWeatherText").text("Temperature: " + weather.main.temp + " °F").appendTo(cardBody);
-    let windText =$("<p>").addClass("card-text").text("Wind: " + weather.wind.speed + " mph").appendTo(cardBody);
+    let windText =$("<p>").addClass("card-text").text("Wind: " + weather.wind.speed + " MPH").appendTo(cardBody);
     let humidityText =$("<p>").addClass("card-text").text("Humidity: " + weather.main.humidity + "%").appendTo(cardBody);
 }
 
@@ -117,12 +117,12 @@ var getCurrentUV = function(coordinates) {
                 let cardBodyForecast = $("<div>").addClass("card-body").appendTo(forecastCard);
                 let forecastDate = $("<h5>").addClass("card-title").html(newDate).appendTo(cardBodyForecast);   
                 let forecastIcon = $("<img>").addClass("icon-img").attr("src", "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + ".png").appendTo(cardBodyForecast);   
-                let forecastTemp = $("<p>").addClass("card-text fp").text(Math.floor(data.daily[i].temp.day) + " °F").appendTo(cardBodyForecast);
-                let forecastWind = $("<p>").addClass("card-text fp").text(data.daily[i].wind_speed + " MPH").appendTo(cardBodyForecast);
+                let forecastTemp = $("<p>").addClass("card-text fp").text(Math.ceil(data.daily[i].temp.day) + " °F").appendTo(cardBodyForecast);
+                let forecastWind = $("<p>").addClass("card-text fp").text(Math.ceil(data.daily[i].wind_speed) + " MPH").appendTo(cardBodyForecast);
                 let forecastHumidity = $("<p>").addClass("card-text fp").text(data.daily[i].humidity + "%").appendTo(cardBodyForecast);
             }
           });
-        })
+        }) 
     }
 
 //retrieve from local storage and display search history
