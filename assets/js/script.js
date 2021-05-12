@@ -143,6 +143,13 @@ $(document).ready(function() {
     });
 });
 
+//press enter to search
+$("#search-input").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#btn-search").click();
+    }
+});
+
 //add event listener to search history
 $(".list-group-item").on("click", function() {
     cityList = $(this).text();
