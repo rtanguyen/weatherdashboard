@@ -30,8 +30,8 @@ body {
 }
 
 .list-group-item {
-    padding: .25rem 1.25rem;
-    font-size: 15px;
+    padding: .25rem;
+    font-size: .9rem;
 }
 
 .bg-color {
@@ -44,4 +44,10 @@ body {
 
 .fp {
   font-size: 16px;  
+}
+
+@media screen and (max-width: 400px) {
+    h1 {
+        font-size: 2rem;
+    }
 }

@@ -79,7 +79,7 @@ var displayWeather = function(weather) {
     let weatherContainer = $("<div>").addClass("card bg-transparent text-center").appendTo(currentEl);
     let cardHeader = $("<div>").addClass("card-header bg-color").appendTo(weatherContainer);
     let cityTitle = $("<h2>").addClass("card-title").text(weather.name).appendTo(cardHeader);
-    let dateTitle = $("<h4>").addClass("card-title").html(currentDay).appendTo(cardHeader);
+    let dateTitle = $("<h5>").addClass("card-title").html(currentDay).appendTo(cardHeader);
     let icon = $("<img>").addClass("icon-img").attr("src", "http://openweathermap.org/img/wn/" + weather.weather[0].icon + ".png").appendTo(cardHeader);
     cardBody = $("<div>").addClass("card-body").appendTo(weatherContainer);
     let tempText =$("<p>").addClass("card-text").attr("id", "currentWeatherText").text("Temperature: " + weather.main.temp + " °F").appendTo(cardBody);
@@ -112,7 +112,7 @@ var getCurrentUV = function(coordinates) {
                 newDate = newDate._d.toLocaleDateString();
                 // console.log(convertDate)
 
-                let forecastContainer = $("<div>").addClass("col-2").appendTo(forecastEl);
+                let forecastContainer = $("<div>").addClass("col-lg-2").appendTo(forecastEl);
                 let forecastCard = $("<div>").addClass("card fc-bg text-center").appendTo(forecastContainer)
                 let cardBodyForecast = $("<div>").addClass("card-body").appendTo(forecastCard);
                 let forecastDate = $("<h5>").addClass("card-title").html(newDate).appendTo(cardBodyForecast);   
